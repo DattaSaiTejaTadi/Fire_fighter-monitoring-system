@@ -1,0 +1,63 @@
+create table people(name varchar(250),
+    phone varchar(250),
+    location_id int,
+    primary key(phone),
+    foreign key(location_id) references location(location_id));
+create table  location(
+    address_line varchar(250),
+    pincode int,
+    district varchar(250),
+    state varchar(250),
+    location_id int,
+    time timestamp,
+    status varchar(250),
+    city varchar(250),
+    report varchar(250),
+  
+     primary key(location_id));
+create table Fire_station(
+    station_id varchar(10) not null,
+    city varchar(50),
+    state varchar(50),
+    address_line varchar(50),
+    district varchar(50),
+    phone varchar(50),
+      primary key(station_id) );
+create table Fire_fighter(
+    id varchar(10) not null,
+    name varchar(50),
+    phone varchar(10),
+    address varchar(50),
+    station varchar(10) not null,
+    role varchar(50),
+    password varchar(20),
+    district varchar(50),
+     primary key(id),
+     foreign key(station) references Fire_station(station_id) );
+insert into Fire_fighter(id,name,phone,address,station,role,password,district) values("apeg01a001","surya kumar yadav","9603159369","9-187 indrapalem","apeg01","Chief","12345","east godavari");
+insert into Fire_station(station_id,city,state,address_line,district,phone) values("apeg01","kakinada","andhra pradesh","98-239/2","east godavri","8008052028");
+insert into location(address_line,pincode,district,state,device_id,time,status,city) values ("64-12-15/1 raghavendra street",533004,"kakinada","andhra pradesh",2,current_timestamp,"under_control","kakinada");
+insert into people(name,phone,device_id) values("datta","7660875942",1);
+DELIMITER $$
+CREATE PROCEDURE check_value(IN u_status varchar(50))
+BEGIN
+DECLARE done INT DEFAULT 0;
+DECLARE user_count INT;
+
+DECLARE cur CURSOR FOR SELECT COUNT(*) FROM location WHERE status = u_status;
+DECLARE CONTINUE HANDLER FOR NOT FOUND SET done = 1;
+
+OPEN cur;
+
+REPEAT
+    FETCH cur INTO user_count;
+    IF user_count > 0 THEN
+      SELECT 'User ID Found';
+    ELSE
+      SELECT 'User ID Not Found';
+    END IF;
+UNTIL done END REPEAT;
+
+CLOSE cur;
+END$$
+DELIMITER ;

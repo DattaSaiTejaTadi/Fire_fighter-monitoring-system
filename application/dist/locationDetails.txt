@@ -1,0 +1,1 @@
+{"address_line": "26-17 kummari street", "pincode": 533434, "district": "east godavari", "state": "andhra prodesh", "location_id": 199, "city": "vetlapallam"}

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <form action="/logout"  method="get">
+        <button type="submit">logout</button>
+    </form>
+
+    <div id="poll">
+        <table id="data-table">
+            <!-- Data from the server will be inserted here -->
+          </table>
+    </div>
+<script>
+  function requestStatus() {
+  fetch('/status')
+    .then(response => {
+      if (response.status === 200) {
+        return response.json();
+      } else {
+        console.error('Error receiving update from server.');
+      }
+    })
+    .then(data => {
+        console.log(data);
+      let tableHTML = '';
+      data.forEach(row => {
+        tableHTML += `
+          <tr>
+            <td>${row.address_line}</td>
+            <td>${row.pincode}</td>
+            <td>${row.district}</td>
+            <td>${row.status}</td>
+            <td>${row.device_id}</td>
+            <td>${row.report}</td>
+          </tr>
+        `;
+      });
+      document.getElementById('data-table').innerHTML = tableHTML;
+    })
+    .catch(error => {
+      console.error(error);
+    });
+}
+setInterval(requestStatus, 1000);
+
+
+        
+    </script>
+</body>
+</html>
