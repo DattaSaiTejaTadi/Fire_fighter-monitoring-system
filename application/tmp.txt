@@ -1,1 +1,0 @@
-[{"id":"apeg01a001","name":"surya kumar yadav","phone":"9603159369","address":"9-187 indrapalem","station":"apeg01","role":"Chief","password":"12345","district":"east godavari"},{"station_id":"apeg01","city":"kakinada","state":"andhra pradesh","address_line":"98-239/2","district":"east godavri","phone":"8008052028"}]

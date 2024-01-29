@@ -1,3 +1,0 @@
-1)app couldnt open without store.txt .
-2)app couldnt open without server connection (need to see watch those)
-3)couldnt get the updated data.
