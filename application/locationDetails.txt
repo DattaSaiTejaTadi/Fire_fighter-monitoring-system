@@ -1,0 +1,1 @@
+{"address_line": "1-16-044 LIC Building", "pincode": 533464, "district": "east godavari", "state": "andhra pradesh", "location_id": 652, "city": "yanam"}
